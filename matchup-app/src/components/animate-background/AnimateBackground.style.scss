@@ -1,0 +1,19 @@
+.animate-background{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    background-image: url("../../static/heart_image.png");
+    background-repeat: repeat;
+    background-size: 100px;
+
+    animation: moveBackground 3s linear infinite;
+}
+@keyframes moveBackground {
+    0% {
+      background-position: 0 0;
+    }
+    100% {
+      background-position: -100px -100px;
+    }
+  }

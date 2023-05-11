@@ -1,0 +1,16 @@
+.login-card{
+    min-width: 278px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    @media (min-width: 768px){
+        max-width: 420px;
+    }
+    @media (max-width: 768px) {
+        max-width: 720px;
+    }
+    @media (max-width: 1440px) {
+        max-width: 1300px;
+    }
+}
