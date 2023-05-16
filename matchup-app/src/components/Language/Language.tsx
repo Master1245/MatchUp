@@ -1,33 +1,38 @@
 import { useContext } from "react";
-import { TranslateContext } from "../../context/TranslateContext";
+import { Translate } from "../../context/TranslateContext";
+import { words } from "./words";
 
-type textLanguageProps = {
-    pt: string,
-    en: string,
-    es: string,
-    russian: string,
+export type Word = {
+    [key: string]: string | undefined;
 }
 
-export function TextLanguage({ pt, en, es, russian }: textLanguageProps) {
-    const { language } = useContext(TranslateContext)!;
+const aliases: Record<string, string> = {
+    'en-US': 'en',
+    'pt-BR': 'pt',
+    'es-ES': 'es',
+}
 
-    const text = () => {
-        switch (language) {
-            case 'pt-BR' || 'pt' || 'pt-PT':
-                return pt;
-            case 'en':
-                return en;
-            case 'es':
-                return es;
-            case 'russian':
-                return russian;
-            default:
-                return en;
-        }
+export function searchWord(word: string, language: string): string {
+    language = aliases[language] || language;
+    const wordObj = words[word];
+    if (wordObj && language in wordObj) {
+        return wordObj[language] || word;
+    } else {
+        return word;
     }
+}
+
+type textLanguageProps = {
+    text: string // original language is english
+}
+
+export function TextLanguage({ text }: textLanguageProps) {
+    const { language } = useContext(Translate)!;
+
+    const text_translated = searchWord(text, language)
     return (
         <>
-            {text()}
+            {text_translated}
         </>
     );
 }

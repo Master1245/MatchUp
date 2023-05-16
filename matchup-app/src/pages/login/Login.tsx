@@ -3,12 +3,12 @@ import { AnimateBackground } from "../../components/animate-background/AnimateBa
 
 import './Login.style.scss'
 import { TextLanguage } from "../../components/Language/Language";
-import { TranslateContext } from "../../context/TranslateContext";
+import { Translate } from "../../context/TranslateContext";
 import { useContext } from "react";
 
 export function Login() {
 
-  const { language, setLanguage } = useContext(TranslateContext);
+  const { language, setLanguage } = useContext(Translate);
 
   const handleChange = (e: { target: { value: any; }; }) => {
     setLanguage(e.target.value);
@@ -27,35 +27,20 @@ export function Login() {
               MatchUp
             </div>
             <small>
-              <TextLanguage
-                pt="Encontre seu par no jogo da vida"
-                en="Find your match in the game of life"
-                es="Encuentra tu pareja en el juego de la vida"
-                russian="Найдите свою пару в игре жизни"
-              />
+              <TextLanguage text="Find your match in the game of life"/>
             </small>
             <Divider />
             <Stack direction="column" justifyContent="center">
               <div className="email-div">
                 <TextField id="email" variant="filled"
                   label={
-                    <TextLanguage
-                      pt="Email"
-                      en="Email"
-                      es="Email"
-                      russian="Эл. адрес"
-                    />}
+                    <TextLanguage text="Email" />}
                 />
               </div>
               <div className="password-div">
                 <TextField id="password" variant="filled"
                   label={
-                    <TextLanguage
-                      pt="Senha"
-                      en="Password"
-                      es="Contraseña"
-                      russian="пароль"
-                    />}
+                    <TextLanguage text="Password" />}
                 />
               </div>
             </Stack>
@@ -69,21 +54,11 @@ export function Login() {
         }}>
           <Stack spacing={2} direction="column" justifyContent="center">
 
-            <Button>
-              <TextLanguage
-                pt="Entrar"
-                en="Sign in"
-                es="Entrar"
-                russian="Войти"
-              />
+            <Button variant="outlined">
+              <TextLanguage text="Sign in" />
             </Button>
-            <Button>
-              <TextLanguage
-                pt="É novo por aqui? Cadastre-se"
-                en="New here? Sign up"
-                es="¿Eres nuevo aquí? Regístrate"
-                russian="Здесь что-то новое? Регистрация"
-              />
+            <Button variant="outlined">
+              <TextLanguage text="Sign up" />
             </Button>
           </Stack>
         </CardActions>

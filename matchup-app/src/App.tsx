@@ -1,13 +1,16 @@
 import './App.style.scss';
 import { Navegation } from './components/navegation/Navegation';
-import { Translate } from './context/TranslateContext';
+import { AuthContext } from './context/AuthContext';
+import { TranslateContext } from './context/TranslateContext';
 
 function App() {
   
   return (
-    <Translate>
-      <Navegation />
-    </Translate>
+    <TranslateContext>
+      <AuthContext>
+        <Navegation />
+      </AuthContext>
+    </TranslateContext>
   );
 }
 

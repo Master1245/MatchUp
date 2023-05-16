@@ -5,12 +5,12 @@ type LanguageContextType = {
   setLanguage: (language: string) => void;
 };
 
-export const TranslateContext = createContext<LanguageContextType>({
+export const Translate = createContext<LanguageContextType>({
   language: '',
   setLanguage: () => {},
 });
 
-export const Translate = ({ children }: any) => {
+export const TranslateContext = ({ children }: any) => {
   const [language, setLanguage] = useState('');
 
   useEffect(() => {
@@ -33,8 +33,8 @@ export const Translate = ({ children }: any) => {
   };
 
   return (
-    <TranslateContext.Provider value={contextValue}>
+    <Translate.Provider value={contextValue}>
       {children}
-    </TranslateContext.Provider>
+    </Translate.Provider>
   );
 };
