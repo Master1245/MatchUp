@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fcab6e71-f9bf-427b-89a6-739e1f15b08e" name="Changes" comment="" />
+    <list default="true" id="fcab6e71-f9bf-427b-89a6-739e1f15b08e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/db/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/db/crud.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/db/schemas.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/models/category.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/models/category.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/models/preference.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/models/preference.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/models/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/models/user.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,7 +39,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+    "settings.editor.selected.configurable": "terminal"
   }
 }]]></component>
   <component name="RecentsManager">
