@@ -1,19 +1,23 @@
-.animate-background{
-    position: absolute;
-    width: 100%;
-    height: 100%;
+$anim-bg-size: 160px;
 
-    background-image: url("../../static/heart_image.png");
-    background-repeat: repeat;
-    background-size: 100px;
+.animate-background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
 
-    animation: moveBackground 3s linear infinite;
+  background-image: url("../../static/heart_image.png");
+  background-repeat: repeat;
+  background-size: $anim-bg-size;
+
+  animation: moveBackground 3s linear infinite;
 }
+
 @keyframes moveBackground {
-    0% {
-      background-position: 0 0;
-    }
-    100% {
-      background-position: -100px -100px;
-    }
+  0% {
+    background-position: 0 0;
   }
+
+  100% {
+    background-position: calc(0px - $anim-bg-size) calc(0px - $anim-bg-size);
+  }
+}

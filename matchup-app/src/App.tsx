@@ -1,12 +1,13 @@
 import './App.style.scss';
-import { Navegation } from './pages/navegation/Navegation';
+import { Navegation } from './components/navegation/Navegation';
+import { Translate } from './context/TranslateContext';
 
 function App() {
+  
   return (
-    <>
-    asddsaasdasd
-    <Navegation />
-    </>
+    <Translate>
+      <Navegation />
+    </Translate>
   );
 }
 
