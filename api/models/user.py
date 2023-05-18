@@ -17,7 +17,8 @@ class UserBase(BaseModel):
     bio: str
     avatar: str
     list_images: list[str]
-    minimal_score: Score
+    minimal_score: str
     local: str
     list_hobbies: list[Hobbie]
     category: list[Category]
+
