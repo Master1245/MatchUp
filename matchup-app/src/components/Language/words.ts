@@ -9,7 +9,7 @@ export const words: Record<string, Word> = {
     "New here? Sign up":{
         es: "¿Eres nuevo aquí? Regístrate",
         pt: "É novo por aqui? Cadastre-se",
-        russian: "Здесь что-то новое? Регистрация"
+        russian: "Новичок здесь? Регистрация"
     },
     "Password":{
         es: "Contraseña",

@@ -1,14 +1,19 @@
-import { Card, CardContent, CardActions, Button, Stack, FormControl, NativeSelect, TextField, Divider } from "@mui/material";
+import { CardContent, CardActions, Button, Stack, FormControl, NativeSelect, TextField, Divider } from "@mui/material";
 import { AnimateBackground } from "../../components/animate-background/AnimateBackground";
 
 import './Login.style.scss'
 import { TextLanguage } from "../../components/Language/Language";
 import { Translate } from "../../context/TranslateContext";
 import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
+import PublicIcon from '@mui/icons-material/Public';
+import { useNavigate } from "react-router-dom";
 
 export function Login() {
-
   const { language, setLanguage } = useContext(Translate);
+  const authContext = useContext(AuthContext);
+  
+  const navigate = useNavigate();
 
   const handleChange = (e: { target: { value: any; }; }) => {
     setLanguage(e.target.value);
@@ -16,7 +21,7 @@ export function Login() {
 
   return (
     <AnimateBackground>
-      <Card className="login-card">
+      <div className="login-card">
         <CardContent sx={{
           display: 'flex',
           flexWrap: 'wrap',
@@ -53,29 +58,34 @@ export function Login() {
           justifyContent: 'center',
         }}>
           <Stack spacing={2} direction="column" justifyContent="center">
-
-            <Button variant="outlined">
+            <Button variant="contained">
               <TextLanguage text="Sign in" />
             </Button>
-            <Button variant="outlined">
-              <TextLanguage text="Sign up" />
+            <Button variant="contained" onClick={() => navigate('/register')}>
+              <TextLanguage text="New here? Sign up" />
             </Button>
           </Stack>
         </CardActions>
-      </Card>
-
+      </div>
+      <Button onClick={() => authContext.login()} >logar</Button> / <Button onClick={() => authContext.logout()}>Deslogar</Button>
       <div className="language-switcher">
         <FormControl fullWidth>
-          <NativeSelect
-            defaultValue={language}
-            value={language}
-            onChange={handleChange}
-          >
-            <option value={"en"}>English</option>
-            <option value={"pt-BR"}>Português</option>
-            <option value={"es"}>Español</option>
-            <option value={"russian"}>русский</option>
-          </NativeSelect>
+          <Stack spacing={2} direction="row">
+            <PublicIcon className="icon-language" style={{ marginTop:'4px' }} />
+            <NativeSelect
+              defaultValue={language}
+              value={language}
+              onChange={handleChange}
+              style={{
+                width: '100%',
+              }}
+            >
+              <option value={"en"}>English</option>
+              <option value={"pt-BR"}>Português</option>
+              <option value={"es"}>Español</option>
+              <option value={"russian"}>русский</option>
+            </NativeSelect>
+          </Stack>
         </FormControl>
       </div>
 

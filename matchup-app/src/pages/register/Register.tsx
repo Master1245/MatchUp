@@ -1,5 +1,13 @@
+import Navbar from "../../components/navbar/Navbar";
+import "./register.styles.scss";
+
 export function Register() {
     return (
-        <h1>Register</h1>
+        <>
+            <Navbar />
+            <div className="container">
+                <h1>aaaaaaaa</h1>
+            </div>
+        </>
     )
 }
