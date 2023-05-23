@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 
 import { useNavigate } from 'react-router-dom';
+import { TextLanguage } from "../Language/Language";
 
 export default function Navbar(): JSX.Element{
     const { isAuthenticated } = useContext(AuthContext);
@@ -24,7 +25,9 @@ export default function Navbar(): JSX.Element{
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                 MatchUp
                 </Typography>
-                {isAuthenticated ? <MenuIcon /> : <Button onClick={() => navigate('/home')} color="inherit">Login</Button>}
+                {isAuthenticated ? <MenuIcon /> : <Button onClick={() => navigate('/home')} color="inherit">
+                    <TextLanguage text="Login" />    
+                </Button>}
             </Toolbar>
             </AppBar>
         </Box>
