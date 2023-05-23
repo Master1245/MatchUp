@@ -21,4 +21,3 @@ class UserBase(BaseModel):
     local: str
     list_hobbies: list[Hobbie]
     category: list[Category]
-
