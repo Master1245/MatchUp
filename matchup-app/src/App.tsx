@@ -1,12 +1,17 @@
+import './styles/variables.scss';
 import './App.style.scss';
-import { Navegation } from './pages/navegation/Navegation';
+
+import { Navegation } from './components/navegation/Navegation';
+import { AuthContextProvider } from './context/AuthContext';
+import { TranslateContext } from './context/TranslateContext';
 
 function App() {
   return (
-    <>
-    asddsaasdasd
-    <Navegation />
-    </>
+    <TranslateContext>
+      <AuthContextProvider>
+        <Navegation />
+      </AuthContextProvider>
+    </TranslateContext>
   );
 }
 
