@@ -1,8 +1,7 @@
 import { VisibilityOff, Visibility } from '@mui/icons-material';
-import { FormControl, InputLabel, OutlinedInput, InputAdornment, TextField, Box, Button, IconButton } from '@mui/material';
+import { FormControl, InputLabel, OutlinedInput, InputAdornment, TextField, Box, Button, IconButton, Checkbox, FormControlLabel } from '@mui/material';
 import React, { useState } from 'react';
 import { TextLanguage } from '../../Language/Language';
-import Password from '../../../utils/forms/inputs/Password';
 
 const RegisterForm: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -91,9 +90,15 @@ const RegisterForm: React.FC = () => {
           />
         </FormControl>
       </Box>
-      <Password value={''} onChange={function (value: string): void {
-        throw new Error('Function not implemented.');
-      } } />
+      <Box sx={{ display: 'flex', flexDirection: 'column', padding: '2.3rem', flexBasis: 3 }}>
+        <FormControlLabel required control={<Checkbox />} label={
+          <>
+            <TextLanguage text="I accept all the terms and conditions." />
+            <br></br>
+            <TextLanguage text="I am over 18 years old." />
+          </>
+          } />
+      </Box>
       <Box sx={{ display: 'flex', flexDirection: 'column', padding: '2.3rem', flexBasis: 3 }}>
         <Button variant="contained" onClick={handleRegister}>
           <TextLanguage text="Register" />

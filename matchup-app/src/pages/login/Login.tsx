@@ -4,13 +4,17 @@ import { AnimateBackground } from "../../components/animate-background/AnimateBa
 import './Login.style.scss'
 import { TextLanguage } from "../../components/Language/Language";
 import { Translate } from "../../context/TranslateContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import PublicIcon from '@mui/icons-material/Public';
 import { useNavigate } from "react-router-dom";
 
 export function Login() {
   const { language, setLanguage } = useContext(Translate);
+
+  const [ username, setUsername ] = useState('');
+  const [ password, setPassword ] = useState('');
+
   const authContext = useContext(AuthContext);
   
   const navigate = useNavigate();
@@ -18,6 +22,14 @@ export function Login() {
   const handleChange = (e: { target: { value: any; }; }) => {
     setLanguage(e.target.value);
   };
+
+  const handleLogin = () => {
+    if (username && password) {
+      authContext.login(username, password);
+    }else{
+      alert('Preencha todos os campos');
+    }
+  }
 
   return (
     <AnimateBackground>
@@ -39,13 +51,17 @@ export function Login() {
               <div className="email-div">
                 <TextField id="email" variant="filled"
                   label={
-                    <TextLanguage text="Email" />}
+                    <TextLanguage text="Email" />
+                  }
+                  onChange={(e) => setUsername(e.target.value)}
                 />
               </div>
               <div className="password-div">
                 <TextField id="password" variant="filled"
                   label={
-                    <TextLanguage text="Password" />}
+                    <TextLanguage text="Password" />
+                  }
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
             </Stack>
@@ -58,7 +74,7 @@ export function Login() {
           justifyContent: 'center',
         }}>
           <Stack spacing={2} direction="column" justifyContent="center">
-            <Button variant="contained">
+            <Button variant="contained" onClick={handleLogin}>
               <TextLanguage text="Sign in" />
             </Button>
             <Button variant="contained" onClick={() => navigate('/register')}>
@@ -67,7 +83,6 @@ export function Login() {
           </Stack>
         </CardActions>
       </div>
-      <Button onClick={() => authContext.login()} >logar</Button> / <Button onClick={() => authContext.logout()}>Deslogar</Button>
       <div className="language-switcher">
         <FormControl fullWidth>
           <Stack spacing={2} direction="row">

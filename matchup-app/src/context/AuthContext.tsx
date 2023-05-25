@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState, ReactNode } from 'react';
+import { axios_login } from '../api/requests/login';
 
 export const AuthContext = createContext<AuthContextType>({
   isAuthenticated: false,
@@ -8,7 +9,7 @@ export const AuthContext = createContext<AuthContextType>({
 
 interface AuthContextType {
   isAuthenticated: boolean;
-  login: () => void;
+  login: (username:string, password:string) => void;
   logout: () => void;
 }
 
@@ -22,8 +23,14 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({ childr
     return storedAuth ? JSON.parse(storedAuth) : false;
   });
 
-  const login = () => {
-    setIsAuthenticated(true);
+  const login = (username:string, password:string) => {
+    axios_login(username, password).then((response) => {
+      if (response.status === 200) {
+        setIsAuthenticated(true);
+      }
+    }, (error) => {
+      console.log(error);
+    });
   };
 
   const logout = () => {

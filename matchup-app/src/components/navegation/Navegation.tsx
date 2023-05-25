@@ -5,10 +5,8 @@ import { useContext } from 'react';
 import { Login } from '../../pages/login/Login';
 import { Home } from '../../pages/home/Home';
 import { Register } from '../../pages/register/Register';
-import { Profile } from '../../pages/profile/Profile';
 import { MoreInfo } from '../../pages/more-info/MoreInfo';
 import { Hobbie } from '../../pages/hobbie/Hobbie';
-import { Chats } from '../../pages/chats/Chats';
 import { ChatRoom } from '../../pages/chat-room/ChatRoom';
 
 import { AuthContext } from '../../context/AuthContext';
@@ -17,25 +15,22 @@ export const Navegation: React.FC = () => {
     const { isAuthenticated } = useContext(AuthContext);
 
     const checkAuth = (element: JSX.Element) => {
-        if (isAuthenticated) {
-        return element;
-        } else {
-        return <Navigate to="/permission-denied" replace />;
-        }
-    };
+        return isAuthenticated ? element : <Navigate to="/login" replace />;
+    }
+
+    const haveAuth = (element: JSX.Element) => {
+        return isAuthenticated===false ? element : <Navigate to="/home" replace />;
+    }
 
     return (
         <Router>
             <Routes>
-                <Route path="/" element={<Login />} />
+                <Route path="/" element={haveAuth(<Login />)} />
                 <Route path="/home" element={checkAuth(<Home />)} />
-                <Route path="/register" element={<Register />} />
-                <Route path="/profile" element={checkAuth(<Profile />)} />
+                <Route path="/register" element={haveAuth(<Register />)} />
                 <Route path="/more-info" element={checkAuth(<MoreInfo />)} />
                 <Route path="/hobbie" element={checkAuth(<Hobbie />)} />
-                <Route path="/chats" element={checkAuth(<Chats />)} />
                 <Route path="/chat-room" element={checkAuth(<ChatRoom />)} />
-                <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
         </Router>
     );

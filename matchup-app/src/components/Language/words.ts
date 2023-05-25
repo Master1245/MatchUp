@@ -24,5 +24,10 @@ export const words: Record<string, Word> = {
         pt: "Encontre seu par no jogo da vida",
         russian: "Найдите свою пару в игре жизни"
     },
+    "Journey":{
+        es: "Jornada",
+        pt: "Jornada",
+        russian: "Путешествие"
+    },
     
 }
