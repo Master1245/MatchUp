@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 from . import models, schemas
-from api.dao.User import UserDao
+from .models import User
 
 
 def get_user(db: Session, user_id: int):
@@ -20,10 +20,14 @@ def get_users(db: Session, skip: int = 0, limit: int = 100):
 
 
 def create_user(db: Session, user: schemas.UserCreate):
-    db_user = UserDao.format_to_db(user)
+    db_user = User.format_to_db(user)
+    print(db_user.is_admin)
+    print(db_user.id)
     db.add(db_user)
     db.commit()
     db.refresh(db_user)
+    print(db_user.is_admin)
+    print(db_user.id)
     return db_user
 
 
