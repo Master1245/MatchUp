@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Translate } from "../../context/TranslateContext";
 import { words } from "./words";
+import { texts } from "./texts";
 
 export type Word = {
     [key: string]: string | undefined;
@@ -22,17 +23,47 @@ export function searchWord(word: string, language: string): string {
     }
 }
 
-type textLanguageProps = {
+type WordLanguageProps = {
     text: string // original language is english
 }
 
-export function TextLanguage({ text }: textLanguageProps) {
+export function WordLanguage({ text }: WordLanguageProps) {
     const { language } = useContext(Translate)!;
 
     const text_translated = searchWord(text, language)
     return (
         <>
             {text_translated}
+        </>
+    );
+}
+
+type TextLanguageProps = {
+    title: string // original language is english
+}
+
+export type Texts = {
+    [key: string]: string | undefined;
+}
+
+export function searchText(title: string, language: string): any {
+    language = aliases[language] || language;
+    const textObj = texts[title];
+    if (textObj && language in textObj) {
+        return null // todo
+    } else {
+        return title;
+    }
+
+}
+
+export function TextLanguage({ title }: TextLanguageProps) {
+    const { language } = useContext(Translate)!;
+
+    const title_translated = searchText(title, language)
+    return (
+        <>
+            {title_translated}
         </>
     );
 }

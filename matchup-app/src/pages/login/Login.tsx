@@ -2,7 +2,7 @@ import { CardContent, CardActions, Button, Stack, TextField, Divider } from "@mu
 import { AnimateBackground } from "../../components/animate-background/AnimateBackground";
 
 import './Login.style.scss'
-import { TextLanguage } from "../../components/Language/Language";
+import { WordLanguage } from "../../components/Language/Language";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -37,14 +37,14 @@ export function Login() {
               MatchUp
             </div>
             <small>
-              <TextLanguage text="Find your match in the game of life"/>
+              <WordLanguage text="Find your match in the game of life"/>
             </small>
             <Divider />
             <Stack direction="column" justifyContent="center">
               <div className="email-div">
                 <TextField id="email" variant="filled"
                   label={
-                    <TextLanguage text="Email or Username" />
+                    <WordLanguage text="Email or Username" />
                   }
                   onChange={(e) => setUsername(e.target.value)}
                 />
@@ -52,7 +52,7 @@ export function Login() {
               <div className="password-div">
                 <TextField id="password" variant="filled" type="password"
                   label={
-                    <TextLanguage text="Password" />
+                    <WordLanguage text="Password" />
                   }
                   onChange={(e) => setPassword(e.target.value)}
                 />
@@ -68,10 +68,10 @@ export function Login() {
         }}>
           <Stack spacing={2} direction="column" justifyContent="center">
             <Button variant="contained" onClick={handleLogin}>
-              <TextLanguage text="Sign in" />
+              <WordLanguage text="Sign in" />
             </Button>
             <Button variant="contained" onClick={() => navigate('/register')}>
-              <TextLanguage text="New here? Sign up" />
+              <WordLanguage text="New here? Sign up" />
             </Button>
           </Stack>
         </CardActions>

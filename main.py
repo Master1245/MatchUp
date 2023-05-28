@@ -80,6 +80,7 @@ def create_access_token(data: dict, expires_delta: timedelta):
     return encoded_jwt
 
 
+
 @app.post("/login", tags=["Authentication"])
 def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
     print(form_data)
@@ -90,7 +91,7 @@ def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depend
     access_token = create_access_token(
         data={"sub": user.email}, expires_delta=access_token_expires
     )
-    return {"access_token": access_token, "token_type": "bearer"}
+    return {"access_token": access_token, "token_type": "bearer", "user": User.return_login(user)}
 
 
 @app.post("/login-admin", tags=["Authentication Admin"])

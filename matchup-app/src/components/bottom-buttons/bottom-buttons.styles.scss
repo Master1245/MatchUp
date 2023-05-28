@@ -1,0 +1,18 @@
+@import '../../styles/variables.scss';
+
+.journey-button.Mui-selected{
+    color: $danger-color;
+}
+
+.profile-button.Mui-selected{
+    color: $success-color;
+}
+
+
+.profile-button,
+.journey-button,
+.chats-button{
+    svg{
+        font-size: 2rem;
+    }
+}

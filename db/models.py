@@ -51,6 +51,15 @@ class User(Base):
                     category=category,
                     hashed_password=user.hashed_password
                     )
+    
+    @classmethod
+    def return_login(cls, user):
+        return User(id=str(user.id),
+                    username=user.username,
+                    avatar=user.avatar,
+                    is_admin=user.is_admin
+        )
+
 
     @classmethod
     def format_to_db(cls, user: UserCreate):

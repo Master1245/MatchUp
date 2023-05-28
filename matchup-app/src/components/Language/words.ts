@@ -34,5 +34,32 @@ export const words: Record<string, Word> = {
         pt: "Jornada",
         russian: "Путешествие"
     },
-    
+    "Sign out":{
+        es: "Cerrar sesión",
+        pt: "Sair",
+        russian: "Перейти к"
+    },
+    "Chats":{
+        russian: "Чаты"
+    },
+    "Profile":{
+        es: "Perfil",
+        pt: "Perfil",
+        russian: "Профиль"
+    },
+    "General Configurations":{
+        es: "Configuraciones generales",
+        pt: "Configurações gerais",
+        russian: "Общие конфигурации"
+    },
+    "Search Preferences":{
+        es: "Preferencias de búsqueda",
+        pt: "Preferências de pesquisa",
+        russian: "Поисковые предпочтения"
+    },
+    "Privacy Policy":{
+        es: "Política de privacidad",
+        pt: "Política de privacidade",
+        russian: "Политика конфиденциальности"
+    },
 }

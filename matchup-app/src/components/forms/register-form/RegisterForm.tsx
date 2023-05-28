@@ -1,7 +1,7 @@
 import { VisibilityOff, Visibility } from '@mui/icons-material';
 import { FormControl, InputLabel, OutlinedInput, InputAdornment, TextField, Box, Button, IconButton, Checkbox, FormControlLabel } from '@mui/material';
 import React, { useState } from 'react';
-import { TextLanguage } from '../../Language/Language';
+import { WordLanguage } from '../../Language/Language';
 
 const RegisterForm: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -26,7 +26,7 @@ const RegisterForm: React.FC = () => {
         <FormControl variant="outlined" sx={{ margin: '1.5ch' }}>
           <TextField
             id="outlined-multiline-flexible"
-            label={<TextLanguage text="Username" />}
+            label={<WordLanguage text="Username" />}
             multiline
             maxRows={4}
             value={username}
@@ -36,7 +36,7 @@ const RegisterForm: React.FC = () => {
         <FormControl variant="outlined" sx={{ margin: '1.5ch' }}>
           <TextField
             id="outlined-multiline-flexible"
-            label={<TextLanguage text="Email" />}
+            label={<WordLanguage text="Email" />}
             multiline
             maxRows={4}
             value={email}
@@ -45,7 +45,7 @@ const RegisterForm: React.FC = () => {
         </FormControl>
         <FormControl variant="outlined" sx={{ margin: '1.5ch' }}>
           <InputLabel htmlFor="outlined-adornment-password">
-            <TextLanguage text="Password" />
+            <WordLanguage text="Password" />
           </InputLabel>
           <OutlinedInput
             id="outlined-adornment-password"
@@ -68,7 +68,7 @@ const RegisterForm: React.FC = () => {
         </FormControl>
         <FormControl variant="outlined" sx={{ margin: '1.5ch' }}>
           <InputLabel htmlFor="outlined-adornment-confirm-password">
-            <TextLanguage text="Confirm Password" />
+            <WordLanguage text="Confirm Password" />
           </InputLabel>
           <OutlinedInput
             id="outlined-adornment-confirm-password"
@@ -93,15 +93,15 @@ const RegisterForm: React.FC = () => {
       <Box sx={{ display: 'flex', flexDirection: 'column', padding: '2.3rem', flexBasis: 3 }}>
         <FormControlLabel required control={<Checkbox />} label={
           <>
-            <TextLanguage text="I accept all the terms and conditions." />
+            <WordLanguage text="I accept all the terms and conditions." />
             <br></br>
-            <TextLanguage text="I am over 18 years old." />
+            <WordLanguage text="I am over 18 years old." />
           </>
           } />
       </Box>
       <Box sx={{ display: 'flex', flexDirection: 'column', padding: '2.3rem', flexBasis: 3 }}>
         <Button variant="contained" onClick={handleRegister}>
-          <TextLanguage text="Register" />
+          <WordLanguage text="Register" />
         </Button>
       </Box>
     </form>

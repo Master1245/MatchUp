@@ -15,7 +15,7 @@ export const Navegation: React.FC = () => {
     const { isAuthenticated } = useContext(AuthContext);
 
     const checkAuth = (element: JSX.Element) => {
-        return isAuthenticated ? element : <Navigate to="/login" replace />;
+        return isAuthenticated ? element : <Navigate to="/" replace />;
     }
 
     const haveAuth = (element: JSX.Element) => {
