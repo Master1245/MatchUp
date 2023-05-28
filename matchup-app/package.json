@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "start": "vite",
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
@@ -15,16 +16,12 @@
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.13.0",
     "@mui/styled-engine": "^5.12.3",
-    "@swc/core": "^1.3.59",
-    "@swc/core-win32-x64-msvc": "^1.3.59",
-    "@swc/wasm": "^1.3.59",
     "axios": "^1.4.0",
     "node-sass": "^8.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router": "^6.11.2",
-    "react-router-dom": "^6.11.1",
-    "zxcvbn": "^4.4.2"
+    "react-router-dom": "^6.11.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",

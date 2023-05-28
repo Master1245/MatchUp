@@ -1,27 +1,20 @@
-import { CardContent, CardActions, Button, Stack, FormControl, NativeSelect, TextField, Divider } from "@mui/material";
+import { CardContent, CardActions, Button, Stack, TextField, Divider } from "@mui/material";
 import { AnimateBackground } from "../../components/animate-background/AnimateBackground";
 
 import './Login.style.scss'
 import { TextLanguage } from "../../components/Language/Language";
-import { Translate } from "../../context/TranslateContext";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import PublicIcon from '@mui/icons-material/Public';
 import { useNavigate } from "react-router-dom";
+import SelectLanguage from "../../components/select-language/SelectLanguage";
 
 export function Login() {
-  const { language, setLanguage } = useContext(Translate);
 
   const [ username, setUsername ] = useState('');
   const [ password, setPassword ] = useState('');
 
   const authContext = useContext(AuthContext);
-  
   const navigate = useNavigate();
-
-  const handleChange = (e: { target: { value: any; }; }) => {
-    setLanguage(e.target.value);
-  };
 
   const handleLogin = () => {
     if (username && password) {
@@ -51,13 +44,13 @@ export function Login() {
               <div className="email-div">
                 <TextField id="email" variant="filled"
                   label={
-                    <TextLanguage text="Email" />
+                    <TextLanguage text="Email or Username" />
                   }
                   onChange={(e) => setUsername(e.target.value)}
                 />
               </div>
               <div className="password-div">
-                <TextField id="password" variant="filled"
+                <TextField id="password" variant="filled" type="password"
                   label={
                     <TextLanguage text="Password" />
                   }
@@ -84,26 +77,8 @@ export function Login() {
         </CardActions>
       </div>
       <div className="language-switcher">
-        <FormControl fullWidth>
-          <Stack spacing={2} direction="row">
-            <PublicIcon className="icon-language" style={{ marginTop:'4px' }} />
-            <NativeSelect
-              defaultValue={language}
-              value={language}
-              onChange={handleChange}
-              style={{
-                width: '100%',
-              }}
-            >
-              <option value={"en"}>English</option>
-              <option value={"pt-BR"}>Português</option>
-              <option value={"es"}>Español</option>
-              <option value={"russian"}>русский</option>
-            </NativeSelect>
-          </Stack>
-        </FormControl>
+        <SelectLanguage />
       </div>
-
     </AnimateBackground>
   )
 }

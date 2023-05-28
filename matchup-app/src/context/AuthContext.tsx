@@ -25,9 +25,8 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({ childr
 
   const login = (username:string, password:string) => {
     axios_login(username, password).then((response) => {
-      if (response.status === 200) {
-        setIsAuthenticated(true);
-      }
+      console.log(response);
+      setIsAuthenticated(true);
     }, (error) => {
       console.log(error);
     });

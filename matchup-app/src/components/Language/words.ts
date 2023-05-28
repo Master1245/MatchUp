@@ -19,6 +19,11 @@ export const words: Record<string, Word> = {
     "Email":{
         russian: "Эл. адрес"
     },
+    "Email or Username":{
+        es: "Correo electrónico o nombre de usuario",
+        pt: "E-mail ou nome de usuário",
+        russian: "Эл. адрес или имя пользователя"
+    },
     "Find your match in the game of life":{
         es: "Encuentra tu pareja en el juego de la vida",
         pt: "Encontre seu par no jogo da vida",
