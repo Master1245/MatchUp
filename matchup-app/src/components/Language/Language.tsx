@@ -41,21 +41,16 @@ export function WordLanguage({ text }: WordLanguageProps) {
 type TextLanguageProps = {
     title: string // original language is english
 }
-
-export type Texts = {
-    [key: string]: string | undefined;
-}
-
-export function searchText(title: string, language: string): any {
+  
+export function searchText(title: string, language: string): string {
     language = aliases[language] || language;
     const textObj = texts[title];
     if (textObj && language in textObj) {
-        return null // todo
+      return textObj[language] || title;
     } else {
-        return title;
+      return title;
     }
-
-}
+  }
 
 export function TextLanguage({ title }: TextLanguageProps) {
     const { language } = useContext(Translate)!;

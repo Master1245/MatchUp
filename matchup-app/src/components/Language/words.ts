@@ -62,4 +62,14 @@ export const words: Record<string, Word> = {
         pt: "Política de privacidade",
         russian: "Политика конфиденциальности"
     },
+    "Add Hobbie":{
+        es: "Agregar Pasatiempo",
+        pt: "Adicionar Passatempo",
+        russian: "Добавить хобби"
+    },
+    "Add Preference":{
+        es: "Agregar Preferencia",
+        pt: "Adicionar Preferência",
+        russian: "Добавить предпочтение"
+    },
 }

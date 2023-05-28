@@ -59,9 +59,30 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({ childr
     localStorage.setItem('isAdministrator', JSON.stringify(isAdministrator));
   }, [isAuthenticated, token, isAdministrator]);
 
+  useEffect(() => {
+    const handleFocus = () => {
+      if (!isAuthenticated) {
+        logout();
+      }
+    };
+
+    window.addEventListener("focus", handleFocus);
+
+    return () => {
+      window.removeEventListener("focus", handleFocus);
+    };
+  }, [isAuthenticated]);
+
   return (
-    <AuthContext.Provider value={{ isAuthenticated, isAdministrator, login, logout }}>
-      {children}
-    </AuthContext.Provider>
+    <AuthContext.Provider
+      value={{
+        isAuthenticated,
+        isAdministrator,
+        login,
+        logout,
+      }}
+    >
+    {children}
+  </AuthContext.Provider>
   );
 };

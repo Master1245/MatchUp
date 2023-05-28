@@ -1,7 +1,8 @@
 import { Box, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Divider } from "@mui/material";
-
-import InboxIcon from '@mui/icons-material/Inbox';
-import DraftsIcon from '@mui/icons-material/Drafts';
+import AddIcon from '@mui/icons-material/Add';
+import { WordLanguage } from "../Language/Language";
+import AddHobbie from "../add-hobbie/AddHobbie";
+import AddPreference from "../add-preference/AddPreference";
 
 export default function MenuAdmin() {
   return (
@@ -10,20 +11,24 @@ export default function MenuAdmin() {
       <nav aria-label="main mailbox folders">
         <List>
           <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <InboxIcon />
-              </ListItemIcon>
-              <ListItemText primary="Inbox" />
-            </ListItemButton>
+            <AddHobbie>
+              <ListItemButton>
+                <ListItemIcon>
+                  <AddIcon />
+                </ListItemIcon>
+                <ListItemText primary={<WordLanguage text="Add Hobbie" />} />
+              </ListItemButton>
+            </AddHobbie>
           </ListItem>
           <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <DraftsIcon />
-              </ListItemIcon>
-              <ListItemText primary="Drafts" />
-            </ListItemButton>
+            <AddPreference>
+              <ListItemButton>
+                <ListItemIcon>
+                  <AddIcon />
+                </ListItemIcon>
+                <ListItemText primary={<WordLanguage text="Add Preference" />} />
+              </ListItemButton>
+            </AddPreference>
           </ListItem>
         </List>
       </nav>
