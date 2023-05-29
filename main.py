@@ -14,6 +14,7 @@ SECRET_KEY = "seu_secret_key_aqui"
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 40
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/login")
+revoked_tokens = set()
 
 app.add_middleware(
     CORSMiddleware,
@@ -91,8 +92,8 @@ def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depend
 
 
 @app.post("/logout", tags=["Authentication"])
-def logout():
-    # Não é necessário receber nenhum parâmetro, pois o token de acesso está no cabeçalho da solicitação
+def logout(token: str = Depends(oauth2_scheme)):
+    revoked_tokens.add(token)
     return {"message": "Logout successful"}
 
 
@@ -112,7 +113,8 @@ def login_admin(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = 
 
 @app.get("/users/me", tags=["Users"])
 def read_user_me(token: str = Depends(oauth2_scheme)):
-    print(token)
+    if token in revoked_tokens:
+        raise HTTPException(status_code=401, detail="Invalid authentication token")
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         email = payload.get("sub")
@@ -130,6 +132,8 @@ def read_user_me(token: str = Depends(oauth2_scheme)):
 
 @app.get("/test", tags=["Describe", "Users"])
 def describe(token: str = Depends(oauth2_scheme)):
+    if token in revoked_tokens:
+        raise HTTPException(status_code=401, detail="Invalid authentication token")
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         email = payload.get("sub")
@@ -137,6 +141,7 @@ def describe(token: str = Depends(oauth2_scheme)):
             raise HTTPException(status_code=401, detail="Invalid authentication token")
         return {"message": "API de usuários"}
     except JWTError:
+        revoked_tokens.add(token)
         raise HTTPException(status_code=401, detail="Invalid authentication token")
 
 
