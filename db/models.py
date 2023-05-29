@@ -28,29 +28,6 @@ class User(Base):
     is_admin = Column(Boolean, default=False)
 
     @classmethod
-    def to_dict_api(cls, user):
-        preference = Preference(name=user.preference) if user.preference else None
-        preference_afinity = [Preference(name=pref) for pref in
-                              json.loads(user.preference_afinity)] if user.preference_afinity else []
-        list_hobbies = [Hobbie(name=hobbie) for hobbie in json.loads(user.list_hobbies)] if user.list_hobbies else []
-        category = [Category(**cat) for cat in json.loads(user.category)] if user.category else []
-        return User(id=str(user.id),
-                    username=user.username,
-                    birth=user.birth,
-                    email=user.email,
-                    preference=preference,
-                    preference_afinity=preference_afinity,
-                    bio=user.bio,
-                    avatar=user.avatar,
-                    list_images=user.list_images,
-                    minimal_score=user.minimal_score,
-                    local=user.local,
-                    list_hobbies=list_hobbies,
-                    category=category,
-                    hashed_password=user.hashed_password
-                    )
-
-    @classmethod
     def return_login(cls, user):
         return User(id=str(user.id),
                     username=user.username,

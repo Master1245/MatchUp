@@ -23,6 +23,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 def get_db():
     db = SessionLocal()
     try:
@@ -39,7 +40,7 @@ def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
     hashed_password = User.get_password_hash(user.password)
     user.password = hashed_password
     user_save = crud.create_user(db=db, user=user)
-    user_json = User.to_dict_api(user_save)
+    user_json = User.return_login(user_save)
     return user_json
 
 
@@ -79,7 +80,6 @@ def create_access_token(data: dict, expires_delta: timedelta):
 
 @app.post("/login", tags=["Authentication"])
 def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
-    print(form_data)
     user = authenticate_user(db, form_data.username, form_data.password)
     if not user:
         raise HTTPException(status_code=401, detail="Incorrect email or password")
