@@ -1,4 +1,6 @@
 from datetime import timedelta, datetime
+from typing import Optional
+
 from jose import JWTError, jwt
 from fastapi import FastAPI, Depends, HTTPException
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
@@ -45,33 +47,18 @@ def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
     return user_json
 
 
-@app.delete("/users/{email}", tags=["Users"])
-def delete_user(email: str, db: Session = Depends(get_db)):
-    db_user = crud.get_user_by_email(db, email=email)
-    if db_user:
-        crud.delete_user(db=db, user=db_user)
-        return {"message": "User deleted"}
-    else:
-        raise HTTPException(status_code=400, detail="User not found")
-
-
-def get_user_by_email_or_username(db: Session, email_or_username: str):
+def authenticate_user(db: Session, email_or_username: str, password: str) -> Optional[User, bool]:
     user = crud.get_user_by_email(db, email_or_username)
     if not user:
         user = crud.get_user_by_username(db, email_or_username)
-    return user
-
-
-def authenticate_user(db: Session, email_or_username: str, password: str):
-    user = get_user_by_email_or_username(db, email_or_username)
     if not user:
         return False
-    if not User.verify_password(password, user.hashed_password):
+    if not User.verify_password(password, user.password):
         return False
     return user
 
 
-def create_access_token(data: dict, expires_delta: timedelta):
+def create_access_token(data: dict, expires_delta: timedelta) -> str:
     to_encode = data.copy()
     expire = datetime.utcnow() + expires_delta
     to_encode.update({"exp": expire})
@@ -127,21 +114,6 @@ def read_user_me(token: str = Depends(oauth2_scheme)):
             raise HTTPException(status_code=404, detail="User not found")
         return User.to_dict_api(user)
     except JWTError:
-        raise HTTPException(status_code=401, detail="Invalid authentication token")
-
-
-@app.get("/test", tags=["Describe", "Users"])
-def describe(token: str = Depends(oauth2_scheme)):
-    if token in revoked_tokens:
-        raise HTTPException(status_code=401, detail="Invalid authentication token")
-    try:
-        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        email = payload.get("sub")
-        if email is None:
-            raise HTTPException(status_code=401, detail="Invalid authentication token")
-        return {"message": "API de usuários"}
-    except JWTError:
-        revoked_tokens.add(token)
         raise HTTPException(status_code=401, detail="Invalid authentication token")
 
 
