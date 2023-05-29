@@ -27,6 +27,8 @@ class User(Base):
     hashed_password = Column(String)
     is_admin = Column(Boolean, default=False)
 
+    pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
     @classmethod
     def return_login(cls, user):
         return User(id=str(user.id),
@@ -34,32 +36,6 @@ class User(Base):
                     avatar=user.avatar,
                     is_admin=user.is_admin
                     )
-
-    @classmethod
-    def format_to_db(cls, user: UserCreate):
-        preference = user.preference.name if user.preference else None
-        preference_afinity = [pref.name for pref in user.preference_afinity] if user.preference_afinity else []
-        list_hobbies = [hobbie.name for hobbie in user.list_hobbies] if user.list_hobbies else []
-        category = [cat.to_dict() for cat in user.category] if user.category else []
-        return User(
-            id=str(user.id),
-            username=user.username,
-            birth=user.birth,
-            email=user.email,
-            preference=preference,
-            preference_afinity=json.dumps(preference_afinity),
-            bio=user.bio,
-            avatar=user.avatar,
-            list_images=json.dumps(user.list_images),
-            minimal_score=user.minimal_score,
-            local=user.local,
-            list_hobbies=json.dumps(list_hobbies),
-            category=json.dumps(category),
-            hashed_password=user.password,
-            is_admin=user.is_admin
-        )
-
-    pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
     @classmethod
     def verify_password(cls, plain_password, hashed_password):
