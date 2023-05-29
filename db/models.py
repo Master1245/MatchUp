@@ -9,8 +9,6 @@ from .database import Base
 from .schemas import UserCreate
 
 
-
-
 class User(Base):
     __tablename__ = "users"
     id = Column(String, primary_key=True, index=True, default=str(uuid.uuid4()))
@@ -51,15 +49,14 @@ class User(Base):
                     category=category,
                     hashed_password=user.hashed_password
                     )
-    
+
     @classmethod
     def return_login(cls, user):
         return User(id=str(user.id),
                     username=user.username,
                     avatar=user.avatar,
                     is_admin=user.is_admin
-        )
-
+                    )
 
     @classmethod
     def format_to_db(cls, user: UserCreate):

@@ -5,7 +5,7 @@ from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
 from db import crud, models, schemas
 from db.database import SessionLocal, engine
-from db.models import User, UserCreate
+from db.models import User
 from fastapi.middleware.cors import CORSMiddleware
 
 models.Base.metadata.create_all(bind=engine)
@@ -15,12 +15,9 @@ ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 40
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/login")
 
-origins = [
-    "http://localhost:5000", # Frontend default route
-]
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins="http://localhost:5000",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -78,7 +75,6 @@ def create_access_token(data: dict, expires_delta: timedelta):
     to_encode.update({"exp": expire})
     encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
     return encoded_jwt
-
 
 
 @app.post("/login", tags=["Authentication"])
