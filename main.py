@@ -90,6 +90,12 @@ def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depend
     return {"access_token": access_token, "token_type": "bearer", "user": User.return_login(user)}
 
 
+@app.post("/logout", tags=["Authentication"])
+def logout():
+    # Não é necessário receber nenhum parâmetro, pois o token de acesso está no cabeçalho da solicitação
+    return {"message": "Logout successful"}
+
+
 @app.post("/login-admin", tags=["Authentication Admin"])
 def login_admin(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
     user = authenticate_user(db, form_data.username, form_data.password)
