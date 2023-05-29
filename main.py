@@ -128,6 +128,18 @@ def read_user_me(token: str = Depends(oauth2_scheme)):
         raise HTTPException(status_code=401, detail="Invalid authentication token")
 
 
+@app.get("/test", tags=["Describe", "Users"])
+def describe(token: str = Depends(oauth2_scheme)):
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        email = payload.get("sub")
+        if email is None:
+            raise HTTPException(status_code=401, detail="Invalid authentication token")
+        return {"message": "API de usuários"}
+    except JWTError:
+        raise HTTPException(status_code=401, detail="Invalid authentication token")
+
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
