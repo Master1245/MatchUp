@@ -2,6 +2,8 @@ import Navbar from "../../components/navbar/Navbar";
 import { TextLanguage, WordLanguage } from "../../components/Language/Language";
 import { Button } from "@mui/material";
 
+import './privacy-policy.styles.scss';
+
 export function PrivacyPolicy() {
     const text_privacy_policy = TextLanguage({title: 'Privacy Policy'})
 
@@ -16,7 +18,7 @@ export function PrivacyPolicy() {
             <Navbar />
             <Button
                 onClick={() => window.close()}
-                variant="contained" size="medium" sx={{m:1}}>
+                variant="contained" size="medium" sx={{mt:'20px', ml:'25px'}}>
                 <WordLanguage text="Back" />
             </Button>
             <div className="container" dangerouslySetInnerHTML={addBreakLinesAndP(text_privacy_policy)}>

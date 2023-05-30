@@ -44,6 +44,8 @@ export const Navegation: React.FC = () => {
                 <Route path="/chat-room" element={checkAuth(<ChatRoom />)} />
 
                 <Route path='/privacy-policy' element={<PrivacyPolicy />} />
+
+                <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
         </Router>
     );

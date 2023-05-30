@@ -72,4 +72,34 @@ export const words: Record<string, Word> = {
         pt: "Adicionar Preferência",
         russian: "Добавить предпочтение"
     },
+    "Login":{
+        es: "Iniciar sesión",
+        pt: "Entrar",
+        russian: "Войти"
+    },
+    "Username":{
+        es: "Nombre de usuario",
+        pt: "Nome de usuário",
+        russian: "имя пользователя"
+    },
+    "Confirm Password":{
+        es: "Confirmar contraseña",
+        pt: "Confirme a Senha",
+        russian: "Подтвердите Пароль"
+    },
+    "I accept all the terms and conditions.":{
+        es: "Acepto todos los términos y condiciones.",
+        pt: "Aceito todos os termos e condições.",
+        russian: "Я принимаю все условия и положения."
+    },
+    "I am over 18 years old.":{
+        es: "Y soy mayor de 18 años.",
+        pt: "E sou maior de 18 anos.",
+        russian: "Мне больше 18 лет."
+    },
+    "Register now!":{
+        es: "¡Regístrate ahora!",
+        pt: "Cadastre-se agora!",
+        russian: "Зарегистрируйтесь сейчас!"
+    },
 }

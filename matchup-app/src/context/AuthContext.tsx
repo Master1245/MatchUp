@@ -1,9 +1,11 @@
 import { createContext, useEffect, useState, ReactNode } from 'react';
+import { axios_logout } from '../api/requests/logout';
 import { axios_login } from '../api/requests/login';
 
 export const AuthContext = createContext<AuthContextType>({
   isAuthenticated: false,
   isAdministrator: false,
+  user: {},
   login: () => {},
   logout: () => {},
 });
@@ -11,6 +13,7 @@ export const AuthContext = createContext<AuthContextType>({
 interface AuthContextType {
   isAuthenticated: boolean;
   isAdministrator: boolean;
+  user: any;
   login: (username:string, password:string) => void;
   logout: () => void;
 }
@@ -20,10 +23,7 @@ interface AuthContextProviderProps {
 }
 
 export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(() => {
-    const storedAuth = localStorage.getItem('isAuthenticated');
-    return storedAuth ? JSON.parse(storedAuth) : false;
-  });
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [token, setToken] = useState(() => {
     const storedToken = localStorage.getItem('token');
     return storedToken ? storedToken : '';
@@ -32,13 +32,22 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({ childr
     const storedIsAdministrator = localStorage.getItem('isAdministrator');
     return storedIsAdministrator ? JSON.parse(storedIsAdministrator) : false;
   });
+  const [user, setUser] = useState<any | null>(null);
+
+  useEffect(() => {
+    const storedIsAuthenticated = localStorage.getItem('isAuthenticated');
+    const storedUser = localStorage.getItem('user');  
+    setUser(storedUser ? JSON.parse(storedUser) : {});
+    setIsAuthenticated(storedIsAuthenticated ? JSON.parse(storedIsAuthenticated) : false);
+  }, []);
 
   const login = (username:string, password:string) => {
     axios_login(username, password).then((response) => {
       console.log(response);
 
-      setToken(response.token);
+      setToken(response.access_token);
       setIsAdministrator(response.user.is_admin);
+      setUser(response.user);
 
       setIsAuthenticated(true);
     }, (error) => {
@@ -51,17 +60,26 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({ childr
 
     setIsAdministrator(false);
     setIsAuthenticated(false);
+
+    axios_logout().then((response) => {
+      console.log(response);
+    }
+    , (error) => {
+      console.log(error);
+    });
   };
 
   useEffect(() => {
     localStorage.setItem('isAuthenticated', JSON.stringify(isAuthenticated));
     localStorage.setItem('token', token);
     localStorage.setItem('isAdministrator', JSON.stringify(isAdministrator));
-  }, [isAuthenticated, token, isAdministrator]);
+    localStorage.setItem('user', JSON.stringify(user));
+  }, [isAuthenticated, token, isAdministrator, user]);
 
   useEffect(() => {
     const handleFocus = () => {
-      if (!isAuthenticated) {
+      console.log(isAuthenticated);
+      if (!isAuthenticated ) {
         logout();
       }
     };
@@ -78,6 +96,7 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({ childr
       value={{
         isAuthenticated,
         isAdministrator,
+        user,
         login,
         logout,
       }}
