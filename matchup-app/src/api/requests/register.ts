@@ -4,13 +4,15 @@ export const axios_register = async (username:string, email: string, password: s
 
   const response = await makeRequest({
     endpoint: '/users',
-    data: {
+    body: {
       username: username,
       email: email,
       password: password,
     },
+    data: {},
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
+      'Accept': 'application/json',
     },
   });
 

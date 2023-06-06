@@ -132,7 +132,6 @@ def get_user_summary(token: str = Depends(oauth2_scheme), params: list[str] = []
         if user is None:
             raise HTTPException(status_code=404, detail="User not found")
 
-        # Remove 'hashed_password' do dicionário user_summary, se presente
         user_summary = {param: getattr(user, param) for param in params if
                         hasattr(user, param) and param != 'hashed_password'}
 

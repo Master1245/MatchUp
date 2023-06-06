@@ -6,7 +6,7 @@ import "./register.styles.scss";
 
 export function Register() {
     useEffect(() => {
-        document.title = "MatchUp - Register";
+        document.title = "BaileSul - Register";
     }, []);
     return (
         <>

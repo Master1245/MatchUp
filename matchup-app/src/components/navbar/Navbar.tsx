@@ -34,7 +34,7 @@ export default function Navbar(): JSX.Element {
             sx={{ mr: 2 }}
           />
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            MatchUp
+            BaileSul
           </Typography>
           {isAuthenticated ?
             <Button onClick={() => openMenu(true)} className="buttonMenu"><SettingsIcon /></Button>

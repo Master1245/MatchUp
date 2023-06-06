@@ -16,7 +16,8 @@ export function Login() {
   const authContext = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const handleLogin = () => {
+  const handleLogin = (e:any) => {
+    e.preventDefault();
     if (username && password) {
       authContext.login(username, password);
     }else{
@@ -34,7 +35,7 @@ export function Login() {
         }}>
           <div className="header-login">
             <div className="logo">
-              MatchUp
+              BaileSul
             </div>
             <small>
               <WordLanguage text="Find your match in the game of life"/>
@@ -67,7 +68,7 @@ export function Login() {
           justifyContent: 'center',
         }}>
           <Stack spacing={2} direction="column" justifyContent="center">
-            <Button variant="contained" onClick={handleLogin}>
+            <Button variant="contained" onClick={function(e) { handleLogin(e) }}>
               <WordLanguage text="Sign in" />
             </Button>
             <Button variant="contained" onClick={() => navigate('/register')}>

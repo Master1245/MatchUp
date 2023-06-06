@@ -1,12 +1,12 @@
 @import '../../styles/variables.scss';
-$anim-bg-size: 160px;
+$anim-bg-size: 300px;
 
 .background-color {
   width: 100%;
   height: 100%;
 
   background: -webkit-linear-gradient(155deg, #fef9efd3 0%, #00000000 40%);
-  background: linear-gradient(155deg, #fef9efd0 50%, #00000000 110%);
+  background: linear-gradient(130deg, #fef9ef 20%, #00000000 200%);
 }
 .animate-background{
   position: absolute;
@@ -18,7 +18,7 @@ $anim-bg-size: 160px;
   background-repeat: repeat;
   background-size: $anim-bg-size;
 
-  animation: moveBackground 3s linear infinite;
+  animation: moveBackground 8s linear infinite;
 }
 
 @keyframes moveBackground {

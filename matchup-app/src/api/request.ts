@@ -7,6 +7,7 @@ interface RequestData {
 interface RequestConfig {
   endpoint: string;
   data: RequestData;
+  body?: RequestData;
   headers?: Record<string, string>;
 }
 
@@ -36,7 +37,7 @@ axiosInstance.interceptors.request.use(
 );
 
 export const makeRequest = async (config: RequestConfig) => {
-  const { endpoint, data, headers } = config;
+  const { endpoint, data, body, headers } = config;
 
   const formattedData = new URLSearchParams();
   Object.entries(data).forEach(([key, value]) => {
