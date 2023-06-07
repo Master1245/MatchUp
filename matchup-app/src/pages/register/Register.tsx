@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { WordLanguage } from "../../components/Language/Language";
+import { WordLanguage } from "../../components/language/Language";
 import RegisterForm from "../../components/forms/register-form/RegisterForm";
 import Navbar from "../../components/navbar/Navbar";
 import "./register.styles.scss";

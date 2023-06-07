@@ -7,7 +7,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 
 import { useNavigate } from 'react-router-dom';
-import { WordLanguage } from "../Language/Language";
+import { WordLanguage } from "../language/Language";
 
 import './navbar.styles.scss';
 import MenuAdmin from "../menu-admin/MenuAdmin";
@@ -34,7 +34,7 @@ export default function Navbar(): JSX.Element {
             sx={{ mr: 2 }}
           />
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            BaileSul
+            <WordLanguage text="BaileSul" />
           </Typography>
           {isAuthenticated ?
             <Button onClick={() => openMenu(true)} className="buttonMenu"><SettingsIcon /></Button>

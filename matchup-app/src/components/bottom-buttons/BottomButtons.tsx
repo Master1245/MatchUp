@@ -5,7 +5,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ModeCommentIcon from '@mui/icons-material/ModeComment';
 
-import { WordLanguage } from "../Language/Language";
+import { WordLanguage } from "../language/Language";
 
 import './bottom-buttons.styles.scss';
 

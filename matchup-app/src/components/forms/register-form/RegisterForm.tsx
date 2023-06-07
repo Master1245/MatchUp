@@ -1,10 +1,10 @@
 import { VisibilityOff, Visibility } from '@mui/icons-material';
 import { FormControl, InputLabel, OutlinedInput, InputAdornment, TextField, Box, Button, IconButton, Checkbox, FormControlLabel } from '@mui/material';
 import React, { useContext, useState } from 'react';
-import { WordLanguage } from '../../Language/Language';
+import { WordLanguage } from '../../language/Language';
 import { Validate } from '../../validations/validate-register-form/validate-register-form';
 
-import { axios_register } from '../../../api/requests/register';
+import { axiosRegister } from '../../../api/requests/register';
 import { AuthContext } from '../../../context/AuthContext';
 
 const RegisterForm: React.FC = () => {
@@ -26,19 +26,18 @@ const RegisterForm: React.FC = () => {
   const [confirmPasswordError, setConfirmPasswordError] = useState(false);
   const [termsError, setTermsError] = useState(false);
 
-  const handleRegister = () => {
+  const handleRegister = async() => {
     const has_valid = Validate(
       username, email, password, confirmPassword, terms,
       setUsernameError, setEmailError, setPasswordError, setConfirmPasswordError, setTermsError
     )
     if (has_valid.length === 0) {
-      axios_register(
-        username, email, password
-      ).then(() => {
-        login(username, password);
-      }, (error: any) => {
-        console.log(error);
-      });
+      try {
+        await axiosRegister(username, email, password);
+        await login(username, password);
+      } catch(e) {
+        console.log(e);
+      }
     }
   };
 

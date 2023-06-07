@@ -6,8 +6,7 @@ interface RequestData {
 
 interface RequestConfig {
   endpoint: string;
-  data: RequestData;
-  body?: RequestData;
+  data?: RequestData;
   headers?: Record<string, string>;
 }
 
@@ -17,34 +16,30 @@ const axiosInstance = axios.create({
   baseURL: 'http://localhost:8000',
   withCredentials: true,
   headers: {
-    'Content-Type': 'application/x-www-form-urlencoded',
-    'Accept': 'application/json',
-  },
+    'Content-Type': 'application/json'
+  }
 });
 
 axiosInstance.interceptors.request.use(
-  (config) => {
+  (config: any) => {
     const endpoint = config.url?.replace(/^\//, '');
 
-    if (endpoint && !['login', 'logout'].includes(endpoint)) {
+    if (endpoint && !['login', 'register'].includes(endpoint)) {
       config.headers['Authorization'] = `Bearer ${token}`;
     }
     return config;
   },
-  (error) => {
+  (error: any) => {
     return Promise.reject(error);
   }
 );
 
 export const makeRequest = async (config: RequestConfig) => {
-  const { endpoint, data, body, headers } = config;
+  const { endpoint, data, headers } = config;
 
-  const formattedData = new URLSearchParams();
-  Object.entries(data).forEach(([key, value]) => {
-    formattedData.append(key, value);
-  });
+  const requestData = data;
 
-  const response = await axiosInstance.post(endpoint, formattedData, { headers });
+  const response = await axiosInstance.post(endpoint, requestData, { headers });
 
   return response.data;
 };

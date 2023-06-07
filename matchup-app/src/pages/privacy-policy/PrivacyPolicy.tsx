@@ -1,5 +1,5 @@
 import Navbar from "../../components/navbar/Navbar";
-import { TextLanguage, WordLanguage } from "../../components/Language/Language";
+import { TextLanguage, WordLanguage } from "../../components/language/Language";
 import { Button } from "@mui/material";
 
 import './privacy-policy.styles.scss';

@@ -1,5 +1,5 @@
 import { Box, List, ListItem, ListItemButton, ListItemText } from "@mui/material";
-import { WordLanguage } from "../Language/Language";
+import { WordLanguage } from "../language/Language";
 import Preferences from "../preferences/Preferences";
 import Configurations from "../configurations/Configurations";
 

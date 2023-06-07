@@ -2,7 +2,7 @@ import { CardContent, CardActions, Button, Stack, TextField, Divider } from "@mu
 import { AnimateBackground } from "../../components/animate-background/AnimateBackground";
 
 import './Login.style.scss'
-import { WordLanguage } from "../../components/Language/Language";
+import { WordLanguage } from "../../components/language/Language";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -35,10 +35,10 @@ export function Login() {
         }}>
           <div className="header-login">
             <div className="logo">
-              BaileSul
+              <WordLanguage text="BaileSul" />
             </div>
             <small>
-              <WordLanguage text="Find your match in the game of life"/>
+              <WordLanguage text="Find your match on the Santa Catarina coast and region."/>
             </small>
             <Divider />
             <Stack direction="column" justifyContent="center">

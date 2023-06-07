@@ -1,6 +1,6 @@
 import { Box, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Divider } from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
-import { WordLanguage } from "../Language/Language";
+import { WordLanguage } from "../language/Language";
 import AddHobbie from "../add-hobbie/AddHobbie";
 import AddPreference from "../add-preference/AddPreference";
 
