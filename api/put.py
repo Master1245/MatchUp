@@ -1,13 +1,14 @@
 from jose import jwt, JWTError
-from api.base_api import app, revoked_tokens
-from api.session import SECRET_KEY, ALGORITHM, oauth2_scheme
-from fastapi import Depends, HTTPException
+from api.auth import SECRET_KEY, ALGORITHM, oauth2_scheme, revoked_tokens
 from db import crud, schemas
 from db.database import SessionLocal
 from db.models import User
+from fastapi import Depends, HTTPException, APIRouter
+
+router = APIRouter()
 
 
-@app.put("/users/me", tags=["Users"])
+@router.put("/users/me", tags=["Users"])
 def update_user_me(token: str = Depends(oauth2_scheme), user: schemas.UserUpdate = Depends()):
     if token in revoked_tokens:
         raise HTTPException(status_code=401, detail="Invalid authentication token")

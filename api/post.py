@@ -1,12 +1,14 @@
-from api.base_api import app, get_db
 from db import schemas
 from sqlalchemy.orm import Session
-from fastapi import Depends, HTTPException
 from db import crud
+from db.database import get_db
 from db.models import User
+from fastapi import Depends, HTTPException, APIRouter
+
+router = APIRouter()
 
 
-@app.post("/users/", tags=["Users"])
+@router.post("/users/", tags=["Users"])
 def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
     db_user = crud.get_user_by_email(db, email=user.email)
     if db_user:

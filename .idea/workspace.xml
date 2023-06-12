@@ -2,21 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7ec8dcb4-5651-431e-afaf-3c691f2ebc83" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/api/base_api.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/get.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/post.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/put.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/session.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/models/category.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/models/chan.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/models/connexion.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/models/group_category.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/models/hobbie.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/models/ppinion.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/models/preference.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/models/score.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/schemas.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/schemas.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/base_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/base_api.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/get.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/get.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/post.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/post.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/put.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/put.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/session.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/session.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/matchup-app/src/components/Language/texts/privacy_policy.ts" beforeDir="false" afterPath="$PROJECT_DIR$/matchup-app/src/components/Language/texts/privacy_policy.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/matchup-app/src/components/Language/words.ts" beforeDir="false" afterPath="$PROJECT_DIR$/matchup-app/src/components/Language/words.ts" afterDir="false" />
@@ -57,6 +48,27 @@
     </key>
   </component>
   <component name="RunManager" selected="Python.main">
+    <configuration name="base_api" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="MatchUp" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/api" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/api/base_api.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="MatchUp" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -102,6 +114,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.main" />
+        <item itemvalue="Python.base_api" />
         <item itemvalue="Python.test" />
       </list>
     </recent_temporary>

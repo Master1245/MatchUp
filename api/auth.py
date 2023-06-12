@@ -1,19 +1,23 @@
 from datetime import timedelta, datetime
-from api.base_api import app, get_db, revoked_tokens
 from sqlalchemy.orm import Session
-from fastapi import Depends, HTTPException
+from db.database import get_db
 from db.models import User
 from fastapi.security import OAuth2PasswordRequestForm, OAuth2PasswordBearer
 from db import crud
 from jose import jwt
+from fastapi import Depends, HTTPException, APIRouter
 
 SECRET_KEY = "seu_secret_key_aqui"
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 40
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/login")
+revoked_tokens = set()
 
 
-@app.post("/login", tags=["Authentication"])
+router = APIRouter()
+
+
+@router.post("/login", tags=["Authentication"])
 def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
     user = authenticate_user(db, form_data.username, form_data.password)
     if not user:
@@ -25,7 +29,7 @@ def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depend
     return {"access_token": access_token, "token_type": "bearer", "user": User.return_login(user)}
 
 
-@app.post("/login-admin", tags=["Authentication Admin"])
+@router.post("/login-admin", tags=["Authentication Admin"])
 def login_admin(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
     user = authenticate_user(db, form_data.username, form_data.password)
     if not user:
@@ -39,7 +43,7 @@ def login_admin(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = 
     return {"access_token": access_token, "token_type": "bearer"}
 
 
-@app.post("/logout", tags=["Authentication"])
+@router.post("/logout", tags=["Authentication"])
 def logout(token: str = Depends(oauth2_scheme)):
     revoked_tokens.add(token)
     return {"message": "Logout successful"}
