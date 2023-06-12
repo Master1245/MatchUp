@@ -9,7 +9,7 @@ export const axiosRegister = async (username:string, email: string, password: st
       email: email,
       password: password,
     }
-  });
+  }, 'post');
 
   return response;
 };

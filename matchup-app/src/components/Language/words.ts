@@ -102,4 +102,23 @@ export const words: Record<string, Word> = {
         pt: "Cadastre-se agora!",
         russian: "Зарегистрируйтесь сейчас!"
     },
+    "Check here all our terms of use":{
+        es: "Vea más sobre nuestros términos y condiciones.",
+        pt: "Veja mais sobre nossos termos e condições de privacidade.",
+        russian: "Узнайте больше о наших правилах и условиях конфиденциальности."
+    },
+    "BaileSul":{
+        russian: "ЮжныйTанец"
+    },
+    "Find your match on the Santa Catarina coast and region.":{
+        pt: "Procure o seu par no litoral de Santa Catarina e região.",
+        es: "Encuente a personas del litoral de Santa Catatina y region",
+        russian: "Ищите своего партнера на побережье Санта-Катарины и области."
+    },
+    "Just one more thing!":{
+        pt: "Só mais uma coisa!",
+    },
+    "Only one more step is needed before you can use our application, tell us a little more about yourself!":{
+        pt: "Só mais um passo é necessário antes de você poder usar nosso aplicativo, nos conte um pouco mais sobre você!",
+    },
 }

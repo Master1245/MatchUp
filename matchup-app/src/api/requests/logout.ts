@@ -9,7 +9,7 @@ export const axios_logout = async () => {
       'Content-Type': 'application/x-www-form-urlencoded',
       Authorization: `Bearer ${localStorage.getItem('token')}`,
     },
-  });
+  }, 'post');
 
   return response;
 };

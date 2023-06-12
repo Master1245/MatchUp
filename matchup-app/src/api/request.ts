@@ -6,7 +6,7 @@ interface RequestData {
 
 interface RequestConfig {
   endpoint: string;
-  data?: RequestData;
+  data?: RequestData | String[] | any;
   headers?: Record<string, string>;
 }
 
@@ -34,11 +34,27 @@ axiosInstance.interceptors.request.use(
   }
 );
 
-export const makeRequest = async (config: RequestConfig) => {
+type methodRequest = 'get' | 'post' | 'put' | 'delete';
+export const makeRequest = async (config: RequestConfig, method: methodRequest) => {
   const { endpoint, data, headers } = config;
 
   const requestData = data;
 
+  if (method === 'get') {
+    //transform data to query string to passed in url if numbers not index passed
+    const query = Object.keys(requestData)
+      .map((key) => {
+        if(Array.isArray(requestData[key])){
+          return `${key}=${requestData[key].join(',')}`;
+        }
+        return `${key}=${requestData[key]}`;
+      })
+      .join('&');
+
+    const response = await axiosInstance.get(`${endpoint}?${query}`, { headers });
+
+    return response.data;
+  }
   const response = await axiosInstance.post(endpoint, requestData, { headers });
 
   return response.data;
