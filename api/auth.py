@@ -7,7 +7,7 @@ from db import crud
 from jose import jwt
 from fastapi import Depends, HTTPException, APIRouter
 
-SECRET_KEY = "seu_secret_key_aqui"
+SECRET_KEY = ""
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 40
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/login")
