@@ -1,7 +1,6 @@
 import uuid
 from passlib.context import CryptContext
-from sqlalchemy import Column, String, JSON, Boolean, ForeignKey
-from sqlalchemy.ext.mutable import MutableDict
+from sqlalchemy import Column, String, Boolean, ForeignKey
 from sqlalchemy.orm import relationship
 from .database import Base
 
