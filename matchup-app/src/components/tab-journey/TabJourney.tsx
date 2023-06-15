@@ -57,6 +57,39 @@ export function TabJourney() {
   return (
     <div className="card-container" onDragOver={handleDragOver} onDrop={handleDrop}>
       {renderCards()}
+
+      <div class="cloud-container" style="height: 500px">
+        <div class="fade-deny"></div>
+        <div class="fade-allow"></div>
+        <div class="fade-like"></div>
+
+        <div class="card-box">
+          <div class="card draggable" value="">
+            <div class="moldure">
+              <p class="status"></p>
+              <p class="name"></p>
+            </div>
+          </div>
+          <div class="next"></div>
+          <div class="option-box">
+            <div class="option">
+              <button class="dislike">
+                NF
+              </button>
+            </div>
+            <div class="option">
+              <button class="super-like">
+                ++
+              </button>
+            </div>
+            <div class="option">
+              <button class="like">
+                S2
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
