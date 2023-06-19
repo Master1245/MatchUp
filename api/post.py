@@ -13,7 +13,7 @@ router = APIRouter()
 def add_hobbie(hobbie_id: int, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
     if not current_user:
         raise HTTPException(status_code=401, detail="Invalid authentication token")
-    crud.add_hobbie(db, hobbie_id)
+    crud.add_hobbie(db, current_user, hobbie_id)
     return {"message": "Hobbie added"}
 
 
@@ -21,7 +21,7 @@ def add_hobbie(hobbie_id: int, db: Session = Depends(get_db), current_user: User
 def remove_hobbie(hobbie_id: int, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
     if not current_user:
         raise HTTPException(status_code=401, detail="Invalid authentication token")
-    crud.remove_hobbie(db, hobbie_id)
+    crud.remove_hobbie(db, current_user, hobbie_id)
     return {"message": "Hobbie removed"}
 
 
@@ -29,7 +29,7 @@ def remove_hobbie(hobbie_id: int, db: Session = Depends(get_db), current_user: U
 def comment_hobbie(hobbie_id: int, comment: str, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
     if not current_user:
         raise HTTPException(status_code=401, detail="Invalid authentication token")
-    crud.comment_hobbie(db, hobbie_id, comment)
+    crud.comment_hobby(db, hobbie_id, comment)
     return {"message": "Comment added"}
 
 
@@ -45,7 +45,7 @@ def create_preference(name: str, db: Session = Depends(get_db), current_user: Us
 def add_preference(preference_id: int, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
     if not current_user:
         raise HTTPException(status_code=401, detail="Invalid authentication token")
-    crud.add_preference(db, preference_id)
+    crud.add_preference(db, current_user, preference_id)
     return {"message": "Preference added"}
 
 
@@ -53,7 +53,7 @@ def add_preference(preference_id: int, db: Session = Depends(get_db), current_us
 def remove_preference(preference_id: int, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
     if not current_user:
         raise HTTPException(status_code=401, detail="Invalid authentication token")
-    crud.remove_preference(db, preference_id)
+    crud.remove_preference(db, current_user, preference_id)
     return {"message": "Preference removed"}
 
 

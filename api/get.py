@@ -80,16 +80,27 @@ def get_user_summary(token: str = Depends(oauth2_scheme), params: Optional[str] 
 
 
 @router.get("/hobbies/", tags=["Hobbies"])
-def get_hobbies(from_user: bool = False, db: Session = Depends(get_db)):
-    hobbies = crud.get_hobbies(db)
+def get_hobbies(from_user: bool = False, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
+    if not current_user:
+        raise HTTPException(status_code=401, detail="Invalid authentication token")
+
     if from_user:
-        hobbies = crud.get_hobbies_from_user(db)
+        hobbies = crud.get_hobbies_from_user(db, current_user.id)
+    else:
+        hobbies = crud.get_hobbies(db)
+
     return hobbies
 
 
-@router.get("/preference/", tags=["Preferences"])
-def get_preferences(from_user: bool = False, db: Session = Depends(get_db)):
-    preferences = crud.get_preferences(db)
+@router.get("/preferences/", tags=["Preferences"])
+def get_preferences(from_user: bool = False, db: Session = Depends(get_db),
+                    current_user: User = Depends(get_current_user)):
+    if not current_user:
+        raise HTTPException(status_code=401, detail="Invalid authentication token")
+
     if from_user:
-        preferences = crud.get_preferences_from_user(db)
+        preferences = crud.get_preferences_from_user(db, current_user.id)
+    else:
+        preferences = crud.get_preferences(db)
+
     return preferences
