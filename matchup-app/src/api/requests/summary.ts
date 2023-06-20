@@ -6,8 +6,16 @@ export const axiosSummary = async () => {
     endpoint: '/users/summary',
     data: {
         params: [
+            'id',
             'username',
             'email',
+            'bio',
+            'avatar',
+            'minimal_score',
+            'local',
+            'social_media',
+            'hobbies',
+            'preferences',
         ]
     }
   }, 'get');

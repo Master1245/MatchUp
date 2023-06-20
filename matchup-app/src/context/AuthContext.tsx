@@ -1,6 +1,8 @@
-import { createContext, useEffect, useState, ReactNode } from 'react';
+import { createContext, useEffect, useState, ReactNode, useContext } from 'react';
 import { axios_logout } from '../api/requests/logout';
 import { axios_login } from '../api/requests/login';
+import { LoadingContext } from './LoadingContext';
+import { AlertContext } from './AlertContext';
 
 export const AuthContext = createContext<AuthContextType>({
   isAuthenticated: false,
@@ -24,6 +26,9 @@ interface AuthContextProviderProps {
 
 export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const { openLoading, closeLoading } = useContext(LoadingContext);
+  const { openAlert, closeAlert } = useContext(AlertContext);
+
   const [token, setToken] = useState(() => {
     const storedToken = localStorage.getItem('token');
     return storedToken ? storedToken : '';
@@ -41,8 +46,11 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({ childr
     setIsAuthenticated(storedIsAuthenticated ? JSON.parse(storedIsAuthenticated) : false);
   }, []);
 
-  const login = (username:string, password:string) => {
-    axios_login(username, password).then((response) => {
+  const login = async (username:string, password:string) => {
+    openLoading();
+    try{
+      const response = await axios_login(username, password);
+
       console.log(response);
 
       setToken(response.access_token);
@@ -50,46 +58,33 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({ childr
       setUser(response.user);
 
       setIsAuthenticated(true);
-    }, (error) => {
-      console.log(error);
-    });
+
+      localStorage.setItem('isAuthenticated', "true");
+      localStorage.setItem('token', response.access_token);
+      localStorage.setItem('isAdministrator', response.user.is_admin);
+      localStorage.setItem('user', response.user);
+    } catch (error: any) {
+      await openAlert(error.response.data.detail, 'error');
+    }
+    closeLoading();
   };
 
-  const logout = () => {
-    setToken('');
-
-    setIsAdministrator(false);
-    setIsAuthenticated(false);
-
+  const logout = async () => {
     axios_logout().then((response) => {
-      console.log(response);
+      setToken('');
+  
+      setIsAdministrator(false);
+      setIsAuthenticated(false);
+    
+      localStorage.setItem('isAuthenticated', '');
+      localStorage.setItem('token', '');
+      localStorage.setItem('isAdministrator', '');
+      localStorage.setItem('user', '');
     }
     , (error) => {
       console.log(error);
     });
   };
-
-  useEffect(() => {
-    localStorage.setItem('isAuthenticated', JSON.stringify(isAuthenticated));
-    localStorage.setItem('token', token);
-    localStorage.setItem('isAdministrator', JSON.stringify(isAdministrator));
-    localStorage.setItem('user', JSON.stringify(user));
-  }, [isAuthenticated, token, isAdministrator, user]);
-
-  useEffect(() => {
-    const handleFocus = () => {
-      console.log(isAuthenticated);
-      if (!isAuthenticated ) {
-        logout();
-      }
-    };
-
-    window.addEventListener("focus", handleFocus);
-
-    return () => {
-      window.removeEventListener("focus", handleFocus);
-    };
-  }, [isAuthenticated]);
 
   return (
     <AuthContext.Provider

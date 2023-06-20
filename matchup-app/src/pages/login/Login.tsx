@@ -2,7 +2,7 @@ import { CardContent, CardActions, Button, Stack, TextField, Divider } from "@mu
 import { AnimateBackground } from "../../components/animate-background/AnimateBackground";
 
 import './Login.style.scss'
-import { WordLanguage } from "../../components/language/Language";
+import { WordLanguage } from "../../components/Language/Language";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";

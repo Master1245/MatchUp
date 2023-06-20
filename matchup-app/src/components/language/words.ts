@@ -121,4 +121,9 @@ export const words: Record<string, Word> = {
     "Only one more step is needed before you can use our application, tell us a little more about yourself!":{
         pt: "Só mais um passo é necessário antes de você poder usar nosso aplicativo, nos conte um pouco mais sobre você!",
     },
+    "Incorrect email or password":{
+        pt: "E-mail ou senha incorretos",
+        es: "Correo electrónico o contraseña incorrectos",
+        russian: "Неверный адрес электронной почты или пароль"
+    }
 }

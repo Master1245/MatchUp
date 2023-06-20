@@ -10,14 +10,6 @@ export function TabJourney() {
   }, []);
 
   const cleanupDragEvents = () => {
-    const cardElements = document.querySelectorAll('.card');
-    cardElements.forEach((cardElement) => {
-      cardElement.removeEventListener('dragstart', handleDragStart);
-    });
-
-    const containerElement = document.querySelector('.card-container');
-    containerElement?.removeEventListener('dragover', handleDragOver);
-    containerElement?.removeEventListener('drop', handleDrop);
   };
 
   const handleDragStart = (event: React.DragEvent<HTMLDivElement>) => {
@@ -56,7 +48,7 @@ export function TabJourney() {
 
   return (
     <div className="card-container" onDragOver={handleDragOver} onDrop={handleDrop}>
-      {renderCards()}
+      {/* {renderCards()}
 
       <div class="cloud-container" style="height: 500px">
         <div class="fade-deny"></div>
@@ -89,7 +81,7 @@ export function TabJourney() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
