@@ -11,7 +11,7 @@ export const axios_login = async (email: string, password: string) => {
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
     },
-  });
+  }, 'post');
 
   return response;
 };

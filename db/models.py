@@ -43,6 +43,7 @@ class Hobby(Base):
     __tablename__ = "hobbies"
     id = Column(String, primary_key=True, index=True, default=str(uuid.uuid4()))
     name = Column(String, unique=True, index=True)
+    comment = Column(String)
 
 
 class UserHobby(Base):
@@ -51,3 +52,8 @@ class UserHobby(Base):
     hobby_id = Column(String, ForeignKey("hobbies.id"), primary_key=True)
 
 
+class Preference(Base):
+    __tablename__ = "preferences"
+    id = Column(String, primary_key=True, index=True, default=str(uuid.uuid4()))
+    name = Column(String, unique=True, index=True)
+    comment = Column(String)

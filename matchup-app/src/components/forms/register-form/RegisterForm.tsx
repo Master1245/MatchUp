@@ -1,7 +1,7 @@
 import { VisibilityOff, Visibility } from '@mui/icons-material';
 import { FormControl, InputLabel, OutlinedInput, InputAdornment, TextField, Box, Button, IconButton, Checkbox, FormControlLabel } from '@mui/material';
 import React, { useContext, useState } from 'react';
-import { WordLanguage } from '../../language/Language';
+import { WordLanguage } from '../../Language/Language';
 import { Validate } from '../../validations/validate-register-form/validate-register-form';
 
 import { axiosRegister } from '../../../api/requests/register';

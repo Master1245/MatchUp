@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect, ReactNode } from 'react';
 
 type LanguageContextType = {
   language: string;
@@ -10,7 +10,11 @@ export const Translate = createContext<LanguageContextType>({
   setLanguage: () => {},
 });
 
-export const TranslateContext = ({ children }: any) => {
+type TranslateContextProps = {
+  children: ReactNode;
+};
+
+export const TranslateContext = ({ children }: TranslateContextProps) => {
   const [language, setLanguage] = useState('');
 
   useEffect(() => {
