@@ -109,3 +109,6 @@ def get_preferences(db: Session):
 
 def get_preferences_from_user(db: Session, user_id: int):
     return db.query(models.Preference).join(models.Preference.users).filter(models.User.id == user_id).all()
+
+def get_matches(db: Session, user_id: int):
+    return db.query(models.User).join(models.User.preferences).filter(models.Preference.users.any(id=user_id)).all()

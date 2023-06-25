@@ -104,3 +104,11 @@ def get_preferences(from_user: bool = False, db: Session = Depends(get_db),
         preferences = crud.get_preferences(db)
 
     return preferences
+
+@router.get("/matches/", tags=["Matches"])
+def get_matches(db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
+    if not current_user:
+        raise HTTPException(status_code=401, detail="Invalid authentication token")
+    current_user = crud.get_user_by_email(db, current_user.email)
+    matches = crud.get_matches(db, current_user.id)
+    return matches
