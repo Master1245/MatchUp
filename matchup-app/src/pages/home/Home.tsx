@@ -21,13 +21,17 @@ export function Home() {
 
 
     return (
-        <>
+        <div
+            style={{
+                overflow: 'hidden',
+            }}
+        >
             <NoHaveInfo />
             <Navbar />
             {tab === 'journey' && <TabJourney />}
             {tab === 'profile' && <TabProfile />}
             {tab === 'chats' && <TabChat />}
             <BottomButtons setTab={setTab} />
-        </>
+        </div>
     )
 }

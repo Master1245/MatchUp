@@ -25,11 +25,11 @@ export function RenderComment({
                 borderRadius={1}
             >
               <Grid xs={12}>
-                    <h2
+                    <h3
                         style={{ padding: '10px', fontWeight: 'bold', color: '#777' }} 
                     >
-                        Comentário
-                    </h2>
+                        Avalie o seguinte comentário...
+                    </h3>
                     <Div
                         style={{ padding: '40px' }}
                     >

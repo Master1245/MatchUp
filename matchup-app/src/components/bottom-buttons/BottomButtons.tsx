@@ -34,7 +34,7 @@ export function BottomButtons({ setTab }: { setTab: Function}) {
           />
         <BottomNavigationAction
           label={<WordLanguage text="Journey" />}
-          value="journey"
+          value="Matchs"
           icon={<FavoriteIcon />}
           className="journey-button"
         />
