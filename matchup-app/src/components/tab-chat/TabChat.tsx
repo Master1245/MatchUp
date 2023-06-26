@@ -11,8 +11,6 @@ export function TabChat() {
             return (
                 <div key={connection.id}
                     style={{
-                        width: '100%',
-                        minHeight: '100px',
                         display: 'flex',
                         justifyContent: 'center',
                         alignItems: 'center',
@@ -34,9 +32,8 @@ export function TabChat() {
                             maxWidth: '110px',
                         }}
                     >
-                        Rede social:
                         <a href={connection.social_media ? connection.social_media : '#'} style={{ marginLeft: '5px' }}>
-                            {connection.social_media.includes('facebook') ? 'Facebook' : connection.social_media.includes('instagram') ? 'Instagram' : connection.social_media.includes('twitter') ? 'Twitter' : 'Não possui'}
+                            @{connection.social_media.includes('facebook') ? 'Facebook' : connection.social_media.includes('instagram') ? 'Instagram' : connection.social_media.includes('twitter') ? 'Twitter' : 'Não possui'}
                         </a>
                     </div>
                 </div>

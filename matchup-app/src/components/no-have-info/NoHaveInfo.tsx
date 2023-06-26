@@ -89,7 +89,7 @@ export function NoHaveInfo() {
             local !== '' &&
             social_media !== ''
         ) {
-            //handleClickOpen();
+            // handleClickOpen();
         }
     }, []);
 

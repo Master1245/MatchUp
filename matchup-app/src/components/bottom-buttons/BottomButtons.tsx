@@ -27,7 +27,7 @@ export function BottomButtons({ setTab }: { setTab: Function}) {
         value={value} 
         onChange={handleChange}>
           <BottomNavigationAction
-            label={<WordLanguage text="Chats" />}
+            label={<WordLanguage text="Matchs" />}
             value="chats"
             icon={<ModeCommentIcon />}
             className="chats-button"
