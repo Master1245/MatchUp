@@ -26,6 +26,7 @@ axiosInstance.interceptors.request.use(
 
     if (endpoint && !['login', 'register'].includes(endpoint)) {
       config.headers['Authorization'] = `Bearer ${token}`;
+      console.log(config.headers);
     }
     return config;
   },
@@ -52,6 +53,11 @@ export const makeRequest = async (config: RequestConfig, method: methodRequest) 
       .join('&');
 
     const response = await axiosInstance.get(`${endpoint}?${query}`, { headers });
+
+    return response.data;
+  }
+  if (method === 'put') {
+    const response = await axiosInstance.put(endpoint, requestData, { headers });
 
     return response.data;
   }

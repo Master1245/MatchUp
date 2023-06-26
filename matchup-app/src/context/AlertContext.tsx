@@ -1,7 +1,7 @@
 import Snackbar from '@mui/material/Snackbar';
 import { ReactNode, createContext, useContext, useState } from "react";
 import { Alert, AlertColor } from '@mui/material';
-import { searchWord } from '../components/Language/Language';
+import { searchWord } from '../components/language/Language';
 import { Translate } from './TranslateContext';
 
 export const AlertContext = createContext<AlertContextType>({

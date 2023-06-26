@@ -1,13 +1,12 @@
 import { VisibilityOff, Visibility } from '@mui/icons-material';
 import { FormControl, InputLabel, OutlinedInput, InputAdornment, TextField, Box, Button, IconButton, Checkbox, FormControlLabel } from '@mui/material';
 import React, { useContext, useState } from 'react';
-import { WordLanguage } from '../../Language/Language';
+import { WordLanguage } from '../../language/Language';
 import { Validate } from '../../validations/validate-register-form/validate-register-form';
-
-import { axiosRegister } from '../../../api/requests/register';
 import { AuthContext } from '../../../context/AuthContext';
+import { axiosRegister } from '../../../api/requests/user';
 
-const RegisterForm: React.FC = () => {
+export const RegisterForm: React.FC = () => {
   const [alert, setAlert] = useState(false);
   const { login } = useContext(AuthContext);
 
@@ -142,5 +141,3 @@ const RegisterForm: React.FC = () => {
     </form>
   );
 };
-
-export default RegisterForm;

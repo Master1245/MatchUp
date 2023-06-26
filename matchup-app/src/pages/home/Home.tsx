@@ -7,6 +7,7 @@ import { TabJourney } from "../../components/tab-journey/TabJourney";
 import { TabChat } from "../../components/tab-chat/TabChat";
 import { TabProfile } from "../../components/tab-profile/TabProfile";
 import { UserContext } from "../../context/UserContext";
+import { NoHaveInfo } from "../../components/no-have-info/NoHaveInfo";
 
 export function Home() {
     const [tab, setTab] = useState('journey');
@@ -17,8 +18,11 @@ export function Home() {
         getInfo();
     }, []);
 
+
+
     return (
         <>
+            <NoHaveInfo />
             <Navbar />
             {tab === 'journey' && <TabJourney />}
             {tab === 'profile' && <TabProfile />}

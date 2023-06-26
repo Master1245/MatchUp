@@ -1,7 +1,7 @@
 import { ReactNode, createContext, useContext, useState } from "react";
-import { axiosSummary } from "../api/requests/summary";
 import { AlertContext } from "./AlertContext";
 import { LoadingContext } from "./LoadingContext";
+import { axiosSummary } from "../api/requests/user";
 
 export const UserContext = createContext<UserContextType>({
     id: '',
@@ -16,6 +16,11 @@ export const UserContext = createContext<UserContextType>({
     preferences: [],
     setUser: () => { },
     getInfo: () => { },
+    setBio: () => { },
+    setAvatar: () => { },
+    setMinimalScore: () => { },
+    setLocal: () => { },
+    setSocialMedia: () => { },
 });
 
 type UserContextType = {
@@ -31,6 +36,11 @@ type UserContextType = {
     preferences: string[];
     setUser: (user: any | null) => void;
     getInfo: () => void;
+    setBio: (bio: string) => void;
+    setAvatar: (avatar: string) => void;
+    setMinimalScore: (minimal_score: number) => void;
+    setLocal: (local: string) => void;
+    setSocialMedia: (social_media: string) => void;
 };
 
 type UserContextProviderProps = {
@@ -57,8 +67,6 @@ export function UserContextProvider({ children }: UserContextProviderProps) {
         try {
             const res = await axiosSummary();
             closeAlert();
-            
-            console.log(res);
             setUser(res);
         } catch (error: any) {
             await openAlert(error.response.data.detail, 'error');
@@ -76,11 +84,28 @@ export function UserContextProvider({ children }: UserContextProviderProps) {
         setLocal(user.local);
         setSocialMedia(user.social_media);
         setHobbies(user.hobbies);
-        setPreferences(user.preferences);
     }
 
     return (
-        <UserContext.Provider value={{ id, username, email, bio, avatar, minimal_score, local, social_media, hobbies, preferences, setUser, getInfo }}>
+        <UserContext.Provider value={{ 
+            id, 
+            username, 
+            email, 
+            bio, 
+            avatar, 
+            minimal_score, 
+            local, 
+            social_media, 
+            hobbies, 
+            preferences, 
+            setUser, 
+            getInfo,
+            setBio,
+            setAvatar,
+            setMinimalScore,
+            setLocal,
+            setSocialMedia
+        }}>
             {children}
         </UserContext.Provider>
     );

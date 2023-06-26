@@ -1,13 +1,11 @@
 import { createContext, useEffect, useState, ReactNode, useContext } from 'react';
-import { axios_logout } from '../api/requests/logout';
-import { axios_login } from '../api/requests/login';
 import { LoadingContext } from './LoadingContext';
 import { AlertContext } from './AlertContext';
+import { axiosLogin, axiosLogout } from '../api/requests/user';
 
 export const AuthContext = createContext<AuthContextType>({
   isAuthenticated: false,
   isAdministrator: false,
-  user: {},
   login: () => {},
   logout: () => {},
 });
@@ -15,7 +13,6 @@ export const AuthContext = createContext<AuthContextType>({
 interface AuthContextType {
   isAuthenticated: boolean;
   isAdministrator: boolean;
-  user: any;
   login: (username:string, password:string) => void;
   logout: () => void;
 }
@@ -37,25 +34,22 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({ childr
     const storedIsAdministrator = localStorage.getItem('isAdministrator');
     return storedIsAdministrator ? JSON.parse(storedIsAdministrator) : false;
   });
-  const [user, setUser] = useState<any | null>(null);
 
   useEffect(() => {
     const storedIsAuthenticated = localStorage.getItem('isAuthenticated');
-    const storedUser = localStorage.getItem('user');  
-    setUser(storedUser ? JSON.parse(storedUser) : {});
     setIsAuthenticated(storedIsAuthenticated ? JSON.parse(storedIsAuthenticated) : false);
   }, []);
 
   const login = async (username:string, password:string) => {
     openLoading();
     try{
-      const response = await axios_login(username, password);
+      const response = await axiosLogin(username, password);
 
       console.log(response);
 
       setToken(response.access_token);
       setIsAdministrator(response.user.is_admin);
-      setUser(response.user);
+      //setUser(response.user);
 
       setIsAuthenticated(true);
 
@@ -70,7 +64,7 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({ childr
   };
 
   const logout = async () => {
-    axios_logout().then((response) => {
+    axiosLogout().then((response) => {
       setToken('');
   
       setIsAdministrator(false);
@@ -91,7 +85,6 @@ export const AuthContextProvider: React.FC<AuthContextProviderProps> = ({ childr
       value={{
         isAuthenticated,
         isAdministrator,
-        user,
         login,
         logout,
       }}

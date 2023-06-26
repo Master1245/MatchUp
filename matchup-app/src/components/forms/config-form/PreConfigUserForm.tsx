@@ -1,6 +1,6 @@
 // import { VisibilityOff, Visibility } from "@mui/icons-material";
 // import { Box, FormControl, TextField, InputLabel, OutlinedInput, InputAdornment, IconButton, FormControlLabel, Checkbox, Button, Divider } from "@mui/material";
-// import { WordLanguage } from "../../Language/Language";
+// import { WordLanguage } from "../../language/Language";
 // import RegisterForm from "../register-form/RegisterForm";
 
 // const PreConfigUserForm: React.FC = () => {
